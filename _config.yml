@@ -16,7 +16,7 @@ timezone: Asia/Shanghai
 
 title: Flyingyu # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the subtitle
+tagline: 一个刚入门的小卡拉米，若有不足之处，还望不吝赐教！ # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
