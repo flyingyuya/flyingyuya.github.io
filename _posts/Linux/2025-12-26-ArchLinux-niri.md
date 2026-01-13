@@ -1,7 +1,7 @@
 ---
 title: 一个适合纯小白的 ArchLinux 下使用 Niri-VM 的配置方案
 date: 2025-12-26 16:52:00 +0800
-categories: [Linux]
+categories: [Linux,Niri]
 tags: [ArchLinux,Niri,配置]
 ---
 
