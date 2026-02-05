@@ -1,8 +1,12 @@
 ---
 title: 十分钟在 ArchLinux 下构建一个 Niri 桌面
+description: 简单构建一个舒适的 Wayland 桌面环境
 date: 2025-12-26 16:52:00 +0800
 categories: [Linux, Niri]
 tags: [ArchLinux, Niri]
+image: 
+   path: /assets/img/posts/Linux/ArchLinux/2025-12-26-ArchLinux-niri-preview.png
+   alt: 最终结果展示
 ---
 
 ## 前言
@@ -115,7 +119,7 @@ sudo pacman -S --needed libnotify mako polkit-gnome tumbler poppler-glib ffmpeg 
  - `fzf`：模糊搜索工具
 
 另外一些软件需要从 AUR 安装，请确保先安装了 yay 助手：
-```
+```bash
 sudo pacman -S yay
 ```
 接着使用`yay`安装：
@@ -236,7 +240,7 @@ yay -S --needed wl-clipboard clipse-bin awww-git waypaper-git matugen waybar-cav
          sudo vim /etc/greetd/config.toml
          ```
          写入以下内容：
-         ```vim
+         ```plaintext
          [terminal]
          # The VT to run the greeter on. Can be "next", "current" or a number
          # designating the VT.
@@ -259,6 +263,7 @@ yay -S --needed wl-clipboard clipse-bin awww-git waypaper-git matugen waybar-cav
          # in the `video` group.
          user = "greeter"
          ```
+         {: file="/etc/greetd/config.toml" }
        - 立即启动 greetd 服务进程：
          ```bash
          sudo systemctl enable --now greetd
