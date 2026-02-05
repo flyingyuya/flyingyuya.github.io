@@ -1,8 +1,14 @@
 ---
 # the default layout is 'page'
+title: 关于我
 icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+我是一名普普通通的在校大学生，涉猎较为广泛，主要有 FPGA、嵌入式软硬件、深度学习、数据分析、Web 开发。目前知识较为浅薄，希望之后的努力学习能够变得更加鲁棒！
+
+我创建这个博客的目的是主要就是为了学习一下 Web 的设计，并记录一下自己的学习笔记，也希望能为其他人提供一些绵薄的帮助！
+
+感谢你的阅读！希望你喜欢我的博客。
+
+---

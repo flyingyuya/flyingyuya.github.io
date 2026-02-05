@@ -1,24 +1,22 @@
 ---
-title: 一个适合纯小白的 ArchLinux 下使用 Niri-VM 的配置方案
+title: 十分钟在 ArchLinux 下构建一个 Niri 桌面
 date: 2025-12-26 16:52:00 +0800
-categories: [Linux,Niri]
-tags: [ArchLinux,Niri,配置]
+categories: [Linux, Niri]
+tags: [ArchLinux, Niri]
 ---
 
 ## 前言
 
-作为一个 Windows 的忠实用户，在安装各种学习和开发工具之后，系统终于还是如风烛残年的老人一般问题频出。于是开始决定换一个新系统玩玩，想到之前在做深度学习时倒腾的 WSL2。作为一个对 Linux 还比较陌生的新手，自然要锻炼一下动手能力，多方比较之后就选了 ArchLinux 这个发行版。由于这个发行版刚装完可谓是非常简陋，所以选一个好的桌面自是非常重要，听说最近窗口管理器很火？并且对新手比较友好的，就选了 niri。因为在安装 niri 时参考了这个[b站博主](https://space.bilibili.com/9202840)的视频，但是他并没有细讲如何在原有的基础上自定义 waybar 和 matugen 全局配色同步更新。这篇文章主要记录一下 niri 的快速安装以及自定义修改配置组件的一般方法。
+作为一个 Windows 的忠实用户，在安装各种学习和开发工具之后，系统终于还是如风烛残年的老人一般问题频出。于是开始决定换一个新系统玩玩，想到之前在做深度学习时倒腾的 WSL2。作为一个对 Linux 还比较陌生的新手，自然要锻炼一下动手能力，多方比较之后就选了 ArchLinux 这个发行版。由于这个发行版刚装完可谓是非常简陋，所以选一个好的桌面自是非常重要，听说最近窗口管理器很火？并且发现 niri 对新手比较友好的，就选了它作为常用 WM。因为在安装 niri 时参考了这个[b站博主](https://space.bilibili.com/9202840)的视频，但是他并没有细讲如何在原有的基础上自定义 waybar 和 matugen 全局配色同步更新。这篇文章主要记录一下 niri 的快速安装以及自定义修改配置组件的一般方法。
 
 ---
 ## 1. ArchLinux 的安装
 
 具体的安装方法可以参考以下几个：
- 1. arch-wiki 的官网
-    >from <https://wiki.archlinux.org/title/Installation_guide>
- 2. archlinux 简明指南
-    >from <https://arch.icekylin.online>
- 3. b站博主
-    >from <https://www.bilibili.com/video/BV1L2gxzVEgs/?spm_id_from=333.1387.homepage.video_card.click>
+>1. arch-wiki 的官网：<https://wiki.archlinux.org/title/Installation_guide>
+>2. archlinux 简明指南：<https://arch.icekylin.online>
+>3. b站博主：<https://www.bilibili.com/video/BV1L2gxzVEgs/?spm_id_from=333.1387.homepagevideo_card.click>
+{: .prompt-info }
 
 安装过程比较漫长，请耐心操作，相信自己一定可以的！
 
@@ -53,11 +51,16 @@ sudo pacman -S niri xwayland-satellite fuzzel kitty fish firefox
 ```bash
 vim ~/.config/niri/config.kdl
 ```
-打开 niri 的配置文件，然后在命令模式下按 `/` 键，输入 `Mod+T` 找到这行（ps: 按 `n` 和 `Shift+n` 可以跳到下一个或者跳到上一个）：
-   >Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-
+打开 niri 的配置文件，然后在命令模式下按 `/` 键，输入 `Mod+T` 找到这行：
+>键盘按下 `n` 或 `Shift+n` 可以跳到下一个或者跳到上一个
+{: .prompt-tip }
+```
+Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+```
 将它改为以下内容：
-   >Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn-sh "kitty -e fish"; }
+```
+Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn-sh "kitty -e fish"; }
+```
 
 其中，`hotkey-overlay-title="Open a Terminal: kitty` 是要在 `Super+Shift+/` 快捷键帮助里显示的内容；`spawn-sh "kitty -e fish"` 是要运行的命令，`spawn-sh` 命令的另一种简洁写法。
 
@@ -77,7 +80,7 @@ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-gnom
 
 还有其他一些日常要用到的软件：
 ```bash
-sudo pacman -S --needed libnotify mako polkit-gnome tumbler poppler-glib ffmpeg ffmpegthumbnailer gvfs-dnssd file-roller thunar-archive-plugin gst-plugins-base gst-plugins-good gst-libav thunar swaylock-effects swayidle bluez blueman network-manager-applet power-profiles-daemon dnsmasq satty wf-recorder waybar ttf-jetbrains-mono-nerd pacman-contrib
+sudo pacman -S --needed libnotify mako polkit-gnome tumbler poppler-glib ffmpeg ffmpegthumbnailer imagemagick gvfs-dnssd file-roller thunar-archive-plugin gst-plugins-base gst-plugins-good gst-libav thunar swaylock-effects swayidle bluez blueman network-manager-applet power-profiles-daemon dnsmasq satty wf-recorder waybar ttf-jetbrains-mono-nerd pacman-contrib
 ```
  - `libnotify`：用于软件向`dbus`发送通知
  - `mako`：接受 dbus 的通知并展示
@@ -85,6 +88,7 @@ sudo pacman -S --needed libnotify mako polkit-gnome tumbler poppler-glib ffmpeg 
  - `tumbler`：图片预览功能
  - `poppler-glib`：pdf 预览功能
  - `ffmpeg` `ffmpegthumbnailer`：提供视频处理和视频预览等服务
+ - `imagemagick`：图片处理软件
  - `gvfs-dnssd`：提供访问 smb 共享等功能，由于 gvfs-smb 和 gvfs-dnssd 已经分离，使用 gvfs-dnssd 即可
  - `file-roller`：提供压缩、解压缩功能
  - `thunar-archive-plugin`：为 thunar 右键提供压缩、解压选项
@@ -93,6 +97,7 @@ sudo pacman -S --needed libnotify mako polkit-gnome tumbler poppler-glib ffmpeg 
    >```bash
    >sudo pacman -s libheif webp-pixbuf-loader libopenraw gst-plugins-bad gst-plugins-ugly
    >```
+   {: .prompt-tip }
  - `thunar`：xfce 下的轻量级文件管理器，启动速度很快，当然你也可以换成自己喜欢的，例如 KDE 的 `dolphin`，Gnome 的 `nautilus`
  - `swaylock-effects`：`swaylock` 是 niri 默认使用的锁屏组件，当然你也可以换成更漂亮的，比如 `hyprlock`
  - `swayidle`：自动熄屏、锁屏和休眠
@@ -161,9 +166,11 @@ yay -S --needed wl-clipboard clipse-bin clipse-gui awww-git waypaper-git matugen
    git clone https://github.com/flyingyuya/ArchLinux-Niri.git $HOME/dotfiles
    ```
 2. 替换当前配置：
-   复制我的 `dotfiles` 目录下的所有文件到你的用户目录下，并选择全部替换（替换之前**请务必备份您现有的配置**，以防出现任何问题时能及时返回），例如：
+   复制我的 `dotfiles` 目录下的所有文件到你的用户目录下，并选择全部替换，例如：
+   >替换之前**请务必备份您现有的配置**，以防出现任何问题时能及时返回
+   {: .prompt-danger}
    ```bash
-   cp -rf $HOME/dotfiles/* $HOME/
+   cp -rf $HOME/dotfiles/. $HOME/
    ```
 
 3. 检查配置脚本:
@@ -172,8 +179,9 @@ yay -S --needed wl-clipboard clipse-bin clipse-gui awww-git waypaper-git matugen
       ```bash
       chmod +x $HOME/.config/niri/scripts/*
       chmod +x $HOME/.config/waybar/scripts/*
+      chmod +x $HOME/.config/scripts/*
       ```
-    * 根据您的系统路径或偏好调整脚本内容。
+    * 根据您的用户目录或个人偏好调整脚本内容。
 
 4. 重启或重新登录：
    应用所有配置后，您可能需要重启系统或注销当前会话并重新登录，以使所有更改生效。
