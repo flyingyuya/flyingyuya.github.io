@@ -80,7 +80,7 @@ sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-gnom
 
 还有其他一些日常要用到的软件：
 ```bash
-sudo pacman -S --needed libnotify mako polkit-gnome tumbler poppler-glib ffmpeg ffmpegthumbnailer imagemagick gvfs-dnssd file-roller thunar-archive-plugin gst-plugins-base gst-plugins-good gst-libav thunar swaylock-effects swayidle bluez blueman network-manager-applet power-profiles-daemon dnsmasq satty wf-recorder waybar ttf-jetbrains-mono-nerd pacman-contrib
+sudo pacman -S --needed libnotify mako polkit-gnome tumbler poppler-glib ffmpeg ffmpegthumbnailer imagemagick gvfs-dnssd file-roller thunar-archive-plugin gst-plugins-base gst-plugins-good gst-libav thunar swaylock-effects swayidle bluez blueman network-manager-applet power-profiles-daemon dnsmasq satty wf-recorder waybar ttf-jetbrains-mono-nerd cliphist xclip wlsunset fzf
 ```
  - `libnotify`：用于软件向`dbus`发送通知
  - `mako`：接受 dbus 的通知并展示
@@ -109,7 +109,10 @@ sudo pacman -S --needed libnotify mako polkit-gnome tumbler poppler-glib ffmpeg 
  - `brightnessctl`：支持使用笔记本的快捷键来调节屏幕亮度
  - `waybar`：提供任务栏面板功能
  - `ttf-jetbrains-mono-nerd`：jetbrains 家族字体，还可以提供一些常见的图标文字
- - `pacman-contrib`：提供 pacman 的一些额外功能，比如 checkupdates 的检查更新
+ - `cliphist`：粘贴板历史记录
+ - `xclip`：X11 剪贴板
+ - `wlsunset`：Wayland 下的护眼小工具
+ - `fzf`：模糊搜索工具
 
 另外一些软件需要从 AUR 安装，请确保先安装了 yay 助手：
 ```
@@ -117,9 +120,9 @@ sudo pacman -S yay
 ```
 接着使用`yay`安装：
 ```bash
-yay -S --needed wl-clipboard clipse-bin clipse-gui awww-git waypaper-git matugen waybar-cava-git cava grim slurp hyprpicker waybar-niri-taskbar-git waybar-module-pacman-updates-git ddcutil-service wlogout swayosd
+yay -S --needed wl-clipboard clipse-bin awww-git waypaper-git matugen waybar-cava-git cava grim slurp hyprpicker waybar-niri-taskbar-git waybar-module-pacman-updates-git ddcutil-service wlogout swayosd ttf-maplemono-nf
 ```
- - `wl-clipboard` `clipse-bin` `clipse-gui`：剪贴板组件，`wl-clipboard`提供`wl-copy`和`wl-paste`工具，`clipse-bin`是软件本体，`clipse-gui`提供 gui 界面
+ - `wl-clipboard` `clipse-bin`：剪贴板组件，`wl-clipboard`提供`wl-copy`和`wl-paste`工具，`clipse-bin`是软件本体
  - `awww-git` `waypaper-git`：壁纸切换组件，`awww-git`提供壁纸切换功能和特效都动画，`waypaper-git`是壁纸管理前端，同时提供随机切换、壁纸恢复等高级功能，依赖于`awww`、`swaybg`等后端工具
  - `matugen`：颜色生成工具，可以根据自定义的模板生成任意格式的颜色文件
  - `waybar-cava-git` `cava`：音频组件，能够采集系统声音并生成对应的频谱
@@ -130,6 +133,7 @@ yay -S --needed wl-clipboard clipse-bin clipse-gui awww-git waypaper-git matugen
  - `ddcutil-service`：支持调节外接屏幕亮度
  - `wlogout`：电源菜单组件
  - `swayosd`：提供`capslock`和`numlock`等锁定状态显示
+ - `ttf-maplemono-nf`：非常好用的编程字体
 
 最后，你需要打开某些软件的后端或硬件访问权限才能工作：
 1. 蓝牙
@@ -147,7 +151,7 @@ yay -S --needed wl-clipboard clipse-bin clipse-gui awww-git waypaper-git matugen
    ```bash
    sudo systemctl enable --now power-profiles-daemon 
    ```
-3. ddcutil
+4. ddcutil
    添加设备组然后重启
    ```bash
    sudo gpasswd -a $USER i2c
