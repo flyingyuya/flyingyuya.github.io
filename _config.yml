@@ -153,6 +153,10 @@ paginate: 10
 # The base URL of your site
 baseurl: ""
 
+# Custom Settings
+live2d:
+  enabled: true  # Set to false to close the billboard girl with one click
+
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:

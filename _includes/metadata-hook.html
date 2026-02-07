@@ -1,1 +1,13 @@
 <!-- A placeholder to allow defining custom metadata -->
+{% if site.live2d.enabled %}
+  <!-- 看板娘 Live2D -->
+  <script src="/assets/live2d-widget/autoload.js"></script>
+  <style>
+    /* 兼容移动端：如果屏幕太小就隐藏，避免挡住 Chirpy 的右下角功能按钮 */
+    @media (max-width: 768px) {
+      #waifu {
+        display: none !important;
+      }
+    }
+  </style>
+{% endif %}
